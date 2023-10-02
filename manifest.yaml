@@ -1,0 +1,458 @@
+dataSources:
+  - kind: ethereum/contract
+    mapping:
+      abis:
+        - file:
+            /: /ipfs/QmfBupEX5LHCKEZFGy9v4aunRAC6FgzaJA9gF6aCnzZ9jQ
+          name: AaveOracle
+        - file:
+            /: /ipfs/QmPcu64y3kxZ1mGMmy9PcwcLSVjXvQvqZHf31MbW93qh4U
+          name: PriceOracle
+        - file:
+            /: /ipfs/Qmdfw58ikjpH16AFhLjaNbnJvLVDsDds6VZ5CPWn5Rx9t6
+          name: IExtendedPriceAggregator
+        - file:
+            /: /ipfs/QmdiowXmwRrMu28Ms7bYFKsZAKWn5dv92NZzS7t58qzZgv
+          name: IERC20Detailed
+        - file:
+            /: /ipfs/QmUuu9CPTR2LTK8fEp2ZeLYKR9NUQbhuTzMNLMaa2QyVMj
+          name: EACAggregatorProxy
+      apiVersion: 0.0.6
+      entities:
+        - ChainlinkAggregator
+        - PriceOracle
+        - PriceOracleAsset
+      eventHandlers:
+        - event: 'AssetSourceUpdated(indexed address,indexed address)'
+          handler: handleAssetSourceUpdated
+        - event: FallbackOracleUpdated(indexed address)
+          handler: handleFallbackOracleUpdated
+        - event: 'BaseCurrencySet(indexed address,uint256)'
+          handler: handleBaseCurrencySet
+      file:
+        /: /ipfs/QmV9hzgqCqwLuqyurBvjF6QCyx5gAzJYnjC7bkPyQNGoM3
+      kind: ethereum/events
+      language: wasm/assemblyscript
+    name: AaveOracle
+    network: mainnet
+    source:
+      abi: AaveOracle
+      address: '0x54586bE62E3c3580375aE3723C145253060Ca0C2'
+      startBlock: 16291123
+  - kind: ethereum/contract
+    mapping:
+      abis:
+        - file:
+            /: /ipfs/QmXP4uRTqqaTgTJGu7KocmJzdfJdX5RZhQ2Wumo6ZxnJ34
+          name: PoolAddressesProviderRegistry
+      apiVersion: 0.0.6
+      entities:
+        - LendingPoolAddressesProvider
+      eventHandlers:
+        - event: 'AddressesProviderRegistered(indexed address,indexed uint256)'
+          handler: handleAddressesProviderRegistered
+        - event: 'AddressesProviderUnregistered(indexed address,indexed uint256)'
+          handler: handleAddressesProviderUnregistered
+      file:
+        /: /ipfs/QmeJfZND6Q57jzFgwPXF1quiCrb3DRjezJtbYt7D7LDv2Y
+      kind: ethereum/events
+      language: wasm/assemblyscript
+    name: PoolAddressesProviderRegistry
+    network: mainnet
+    source:
+      abi: PoolAddressesProviderRegistry
+      address: '0xbaA999AC55EAce41CcAE355c77809e68Bb345170'
+      startBlock: 16291006
+  - kind: ethereum/contract
+    mapping:
+      abis:
+        - file:
+            /: /ipfs/QmScBhKYEtfXH6kkQWsrPuJQVromLqiB1AWi9Av8Yup3nZ
+          name: RewardsController
+        - file:
+            /: /ipfs/QmdiowXmwRrMu28Ms7bYFKsZAKWn5dv92NZzS7t58qzZgv
+          name: IERC20Detailed
+        - file:
+            /: /ipfs/QmbowyhJ4uwfeYiQ8mZYXBwn6Zmunt2kYaq2oRwBL6NK5o
+          name: AToken
+      apiVersion: 0.0.6
+      entities:
+        - RewardsController
+      eventHandlers:
+        - event: >-
+            AssetConfigUpdated(indexed address,indexed
+            address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleAssetConfigUpdated
+        - event: >-
+            Accrued(indexed address,indexed address,indexed
+            address,uint256,uint256,uint256)
+          handler: handleAccrued
+        - event: >-
+            RewardsClaimed(indexed address,indexed address,indexed
+            address,address,uint256)
+          handler: handleRewardsClaimed
+        - event: 'RewardOracleUpdated(indexed address,indexed address)'
+          handler: handleRewardOracleUpdated
+        - event: 'EmissionManagerUpdated(indexed address,indexed address)'
+          handler: handleEmissionManagerUpdated
+      file:
+        /: /ipfs/QmRdeG2QEGMoyJ4yd1oaR7Lb2MM7aznMCRNqvyi7E7sBiA
+      kind: ethereum/events
+      language: wasm/assemblyscript
+    name: RewardsController
+    network: mainnet
+    source:
+      abi: RewardsController
+      address: '0x8164Cc65827dcFe994AB23944CBC90e0aa80bFcb'
+      startBlock: 16291136
+description: Protocol v3 subgraph
+repository: 'https://github.com/aave/protocol-subgraphs'
+schema:
+  file:
+    /: /ipfs/QmdTvYBbcdeKwKeHGdhwspS5ZniYvWz2TKVzEV4nMJBV7w
+specVersion: 0.0.4
+templates:
+  - kind: ethereum/contract
+    mapping:
+      abis:
+        - file:
+            /: /ipfs/QmPcu64y3kxZ1mGMmy9PcwcLSVjXvQvqZHf31MbW93qh4U
+          name: PriceOracle
+        - file:
+            /: /ipfs/QmfBupEX5LHCKEZFGy9v4aunRAC6FgzaJA9gF6aCnzZ9jQ
+          name: AaveOracle
+      apiVersion: 0.0.6
+      entities:
+        - PriceOracle
+        - PriceOracleReserve
+      eventHandlers:
+        - event: 'AssetPriceUpdated(address,uint256,uint256)'
+          handler: handleAssetPriceUpdated
+        - event: 'EthPriceUpdated(uint256,uint256)'
+          handler: handleEthPriceUpdated
+      file:
+        /: /ipfs/QmaHQLrb7vFFZLhkc4MEWv83haffCAQJi3WYWjqbgVv2yp
+      kind: ethereum/events
+      language: wasm/assemblyscript
+    name: FallbackPriceOracle
+    network: mainnet
+    source:
+      abi: PriceOracle
+  - kind: ethereum/contract
+    mapping:
+      abis:
+        - file:
+            /: /ipfs/Qmdfw58ikjpH16AFhLjaNbnJvLVDsDds6VZ5CPWn5Rx9t6
+          name: IExtendedPriceAggregator
+        - file:
+            /: /ipfs/QmfBupEX5LHCKEZFGy9v4aunRAC6FgzaJA9gF6aCnzZ9jQ
+          name: AaveOracle
+      apiVersion: 0.0.6
+      entities:
+        - PriceOracleReserve
+      eventHandlers:
+        - event: 'AnswerUpdated(indexed int256,indexed uint256,uint256)'
+          handler: handleChainlinkAnswerUpdated
+      file:
+        /: /ipfs/QmaHQLrb7vFFZLhkc4MEWv83haffCAQJi3WYWjqbgVv2yp
+      kind: ethereum/events
+      language: wasm/assemblyscript
+    name: ChainlinkAggregator
+    network: mainnet
+    source:
+      abi: IExtendedPriceAggregator
+  - kind: ethereum/contract
+    mapping:
+      abis:
+        - file:
+            /: /ipfs/QmbowyhJ4uwfeYiQ8mZYXBwn6Zmunt2kYaq2oRwBL6NK5o
+          name: AToken
+        - file:
+            /: /ipfs/QmdiowXmwRrMu28Ms7bYFKsZAKWn5dv92NZzS7t58qzZgv
+          name: IERC20Detailed
+        - file:
+            /: /ipfs/QmScBhKYEtfXH6kkQWsrPuJQVromLqiB1AWi9Av8Yup3nZ
+          name: RewardsController
+        - file:
+            /: /ipfs/QmWVP9J3y9YDsKeveSPMHFVjj64W8vxveWgxFgfvcqb183
+          name: Pool
+      apiVersion: 0.0.6
+      entities:
+        - AToken
+        - UserReserve
+      eventHandlers:
+        - event: 'Burn(indexed address,indexed address,uint256,uint256,uint256)'
+          handler: handleATokenBurn
+        - event: 'BalanceTransfer(indexed address,indexed address,uint256,uint256)'
+          handler: handleBalanceTransfer
+        - event: 'Mint(indexed address,indexed address,uint256,uint256,uint256)'
+          handler: handleATokenMint
+        - event: >-
+            Initialized(indexed address,indexed
+            address,address,address,uint8,string,string,bytes)
+          handler: handleATokenInitialized
+      file:
+        /: /ipfs/QmbXcpNRJgLmoFmA5BYmnXf1sDGcGNMwE8EiQWHPMTAiAV
+      kind: ethereum/events
+      language: wasm/assemblyscript
+    name: AToken
+    network: mainnet
+    source:
+      abi: AToken
+  - kind: ethereum/contract
+    mapping:
+      abis:
+        - file:
+            /: /ipfs/QmNMquwU16TX1YWe9Vo5j3UZUrk31f6kBg1bzunAv4LEXh
+          name: StableDebtToken
+        - file:
+            /: /ipfs/QmdiowXmwRrMu28Ms7bYFKsZAKWn5dv92NZzS7t58qzZgv
+          name: IERC20Detailed
+        - file:
+            /: /ipfs/QmScBhKYEtfXH6kkQWsrPuJQVromLqiB1AWi9Av8Yup3nZ
+          name: RewardsController
+      apiVersion: 0.0.6
+      entities:
+        - StableDebtToken
+        - UserReserve
+      eventHandlers:
+        - event: 'Burn(indexed address,uint256,uint256,uint256,uint256,uint256)'
+          handler: handleStableTokenBurn
+        - event: >-
+            Mint(indexed address,indexed
+            address,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleStableTokenMint
+        - event: >-
+            BorrowAllowanceDelegated(indexed address,indexed address,indexed
+            address,uint256)
+          handler: handleStableTokenBorrowAllowanceDelegated
+        - event: >-
+            Initialized(indexed address,indexed
+            address,address,uint8,string,string,bytes)
+          handler: handleSTokenInitialized
+      file:
+        /: /ipfs/QmbXcpNRJgLmoFmA5BYmnXf1sDGcGNMwE8EiQWHPMTAiAV
+      kind: ethereum/events
+      language: wasm/assemblyscript
+    name: StableDebtToken
+    network: mainnet
+    source:
+      abi: StableDebtToken
+  - kind: ethereum/contract
+    mapping:
+      abis:
+        - file:
+            /: /ipfs/QmdxxbEaJVgu1gb3dGpTbpoMUuQAvmhX5oSFPZZdSMxbzB
+          name: VariableDebtToken
+        - file:
+            /: /ipfs/QmdiowXmwRrMu28Ms7bYFKsZAKWn5dv92NZzS7t58qzZgv
+          name: IERC20Detailed
+        - file:
+            /: /ipfs/QmScBhKYEtfXH6kkQWsrPuJQVromLqiB1AWi9Av8Yup3nZ
+          name: RewardsController
+      apiVersion: 0.0.6
+      entities:
+        - StableDebtToken
+        - UserReserve
+      eventHandlers:
+        - event: 'Burn(indexed address,indexed address,uint256,uint256,uint256)'
+          handler: handleVariableTokenBurn
+        - event: 'Mint(indexed address,indexed address,uint256,uint256,uint256)'
+          handler: handleVariableTokenMint
+        - event: >-
+            BorrowAllowanceDelegated(indexed address,indexed address,indexed
+            address,uint256)
+          handler: handleVariableTokenBorrowAllowanceDelegated
+        - event: >-
+            Initialized(indexed address,indexed
+            address,address,uint8,string,string,bytes)
+          handler: handleVTokenInitialized
+      file:
+        /: /ipfs/QmbXcpNRJgLmoFmA5BYmnXf1sDGcGNMwE8EiQWHPMTAiAV
+      kind: ethereum/events
+      language: wasm/assemblyscript
+    name: VariableDebtToken
+    network: mainnet
+    source:
+      abi: VariableDebtToken
+  - kind: ethereum/contract
+    mapping:
+      abis:
+        - file:
+            /: /ipfs/QmXZvs8bNgN9BAe9x8xDTsBVPUP2LtsFkJJCC6G9vPjgs4
+          name: PoolAddressesProvider
+      apiVersion: 0.0.6
+      entities:
+        - PoolAddressesProvider
+      eventHandlers:
+        - event: 'ProxyCreated(indexed bytes32,indexed address,indexed address)'
+          handler: handleProxyCreated
+        - event: 'PriceOracleUpdated(indexed address,indexed address)'
+          handler: handlePriceOracleUpdated
+        - event: 'PoolUpdated(indexed address,indexed address)'
+          handler: handlePoolUpdated
+        - event: 'PoolConfiguratorUpdated(indexed address,indexed address)'
+          handler: handlePoolConfiguratorUpdated
+        - event: 'PoolDataProviderUpdated(indexed address,indexed address)'
+          handler: handlePoolDataProviderUpdated
+      file:
+        /: /ipfs/QmS8R3o5ZH9HVdTekfgcifN695UYQkCmVLoc66evhHn5J5
+      kind: ethereum/events
+      language: wasm/assemblyscript
+    name: PoolAddressesProvider
+    network: mainnet
+    source:
+      abi: PoolAddressesProvider
+  - kind: ethereum/contract
+    mapping:
+      abis:
+        - file:
+            /: /ipfs/QmW8VGd4VYqG6PkkUJrZYj32uRSxcodsSuVq85AxkhR4Cq
+          name: PoolConfigurator
+        - file:
+            /: /ipfs/QmdiowXmwRrMu28Ms7bYFKsZAKWn5dv92NZzS7t58qzZgv
+          name: IERC20Detailed
+        - file:
+            /: /ipfs/QmUygkrwaZ6KWLQ3mxGvYca6sPoejNG6545StRD1Nez2re
+          name: IERC20DetailedBytes
+        - file:
+            /: /ipfs/QmNcESkxcbVds4b62KUXjsCCZBW1djLKegihn8qmki1jbf
+          name: DefaultReserveInterestRateStrategy
+      apiVersion: 0.0.6
+      entities:
+        - Reserve
+      eventHandlers:
+        - event: >-
+            ReserveInitialized(indexed address,indexed
+            address,address,address,address)
+          handler: handleReserveInitialized
+        - event: 'ReserveBorrowing(indexed address,bool)'
+          handler: handleReserveBorrowing
+        - event: >-
+            CollateralConfigurationChanged(indexed
+            address,uint256,uint256,uint256)
+          handler: handleCollateralConfigurationChanged
+        - event: 'ReserveStableRateBorrowing(indexed address,bool)'
+          handler: handleReserveStableRateBorrowing
+        - event: 'ReserveActive(indexed address,bool)'
+          handler: handleReserveActive
+        - event: 'ReserveFrozen(indexed address,bool)'
+          handler: handleReserveFrozen
+        - event: 'ReservePaused(indexed address,bool)'
+          handler: handleReservePaused
+        - event: ReserveDropped(indexed address)
+          handler: handleReserveDropped
+        - event: 'ReserveFactorChanged(indexed address,uint256,uint256)'
+          handler: handleReserveFactorChanged
+        - event: 'ATokenUpgraded(indexed address,indexed address,indexed address)'
+          handler: handleATokenUpgraded
+        - event: 'BorrowCapChanged(indexed address,uint256,uint256)'
+          handler: handleBorrowCapChanged
+        - event: 'BorrowableInIsolationChanged(address,bool)'
+          handler: handleBorrowableInIsolationChanged
+        - event: 'BridgeProtocolFeeUpdated(uint256,uint256)'
+          handler: handleBridgeProtocolFeeUpdated
+        - event: 'DebtCeilingChanged(indexed address,uint256,uint256)'
+          handler: handleDebtCeilingChanged
+        - event: 'EModeAssetCategoryChanged(indexed address,uint8,uint8)'
+          handler: handleEModeAssetCategoryChanged
+        - event: >-
+            EModeCategoryAdded(indexed
+            uint8,uint256,uint256,uint256,address,string)
+          handler: handleEModeCategoryAdded
+        - event: 'FlashloanPremiumToProtocolUpdated(uint128,uint128)'
+          handler: handleFlashloanPremiumToProtocolUpdated
+        - event: 'FlashloanPremiumTotalUpdated(uint128,uint128)'
+          handler: handleFlashloanPremiumTotalUpdated
+        - event: 'LiquidationProtocolFeeChanged(indexed address,uint256,uint256)'
+          handler: handleLiquidationProtocolFeeChanged
+        - event: 'ReserveInterestRateStrategyChanged(indexed address,address,address)'
+          handler: handleReserveInterestRateStrategyChanged
+        - event: 'SiloedBorrowingChanged(indexed address,bool,bool)'
+          handler: handleSiloedBorrowingChanged
+        - event: >-
+            StableDebtTokenUpgraded(indexed address,indexed address,indexed
+            address)
+          handler: handleStableDebtTokenUpgraded
+        - event: 'SupplyCapChanged(indexed address,uint256,uint256)'
+          handler: handleSupplyCapChanged
+        - event: 'UnbackedMintCapChanged(indexed address,uint256,uint256)'
+          handler: handleUnbackedMintCapChanged
+        - event: >-
+            VariableDebtTokenUpgraded(indexed address,indexed address,indexed
+            address)
+          handler: handleVariableDebtTokenUpgraded
+      file:
+        /: /ipfs/QmZxWLamuyXJapwVxdRRtkt9SFUm26XSq2VKKzTdmGPx4a
+      kind: ethereum/events
+      language: wasm/assemblyscript
+    name: PoolConfigurator
+    network: mainnet
+    source:
+      abi: PoolConfigurator
+  - kind: ethereum/contract
+    mapping:
+      abis:
+        - file:
+            /: /ipfs/QmWVP9J3y9YDsKeveSPMHFVjj64W8vxveWgxFgfvcqb183
+          name: Pool
+      apiVersion: 0.0.6
+      entities:
+        - ReserveOperation
+        - InterestRateHistory
+        - Reserve
+        - UserReserve
+        - User
+      eventHandlers:
+        - event: >-
+            Supply(indexed address,address,indexed address,uint256,indexed
+            uint16)
+          handler: handleSupply
+        - event: 'Withdraw(indexed address,indexed address,indexed address,uint256)'
+          handler: handleWithdraw
+        - event: >-
+            Borrow(indexed address,address,indexed
+            address,uint256,uint8,uint256,indexed uint16)
+          handler: handleBorrow
+        - event: 'Repay(indexed address,indexed address,indexed address,uint256,bool)'
+          handler: handleRepay
+        - event: 'SwapBorrowRateMode(indexed address,indexed address,uint8)'
+          handler: handleSwapBorrowRateMode
+        - event: 'ReserveUsedAsCollateralEnabled(indexed address,indexed address)'
+          handler: handleReserveUsedAsCollateralEnabled
+        - event: 'ReserveUsedAsCollateralDisabled(indexed address,indexed address)'
+          handler: handleReserveUsedAsCollateralDisabled
+        - event: 'RebalanceStableBorrowRate(indexed address,indexed address)'
+          handler: handleRebalanceStableBorrowRate
+        - event: >-
+            FlashLoan(indexed address,address,indexed
+            address,uint256,uint8,uint256,indexed uint16)
+          handler: handleFlashLoan
+        - event: >-
+            LiquidationCall(indexed address,indexed address,indexed
+            address,uint256,uint256,address,bool)
+          handler: handleLiquidationCall
+        - event: >-
+            ReserveDataUpdated(indexed
+            address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleReserveDataUpdated
+        - event: >-
+            MintUnbacked(indexed address,address,indexed address,uint256,indexed
+            uint16)
+          handler: handleMintUnbacked
+        - event: 'BackUnbacked(indexed address,indexed address,uint256,uint256)'
+          handler: handleBackUnbacked
+        - event: 'MintedToTreasury(indexed address,uint256)'
+          handler: handleMintedToTreasury
+        - event: 'UserEModeSet(indexed address,uint8)'
+          handler: handleUserEModeSet
+        - event: 'IsolationModeTotalDebtUpdated(indexed address,uint256)'
+          handler: handleIsolationModeTotalDebtUpdated
+      file:
+        /: /ipfs/QmbjioRTM28GrDtG1pDNk2a8WXJ56qsGgbVHMsG8hCwSwF
+      kind: ethereum/events
+      language: wasm/assemblyscript
+    name: Pool
+    network: mainnet
+    source:
+      abi: Pool

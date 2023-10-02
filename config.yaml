@@ -1,0 +1,117 @@
+name: AaveOracle
+description: Protocol v3 subgraph
+schema: null
+networks:
+- id: 1
+  start_block: 0
+  contracts:
+  - name: AaveOracle
+    abi_file_path: ./abis/AaveOracle.json
+    handler: ./src/EventHandlers.js
+    address:
+    - 0x54586bE62E3c3580375aE3723C145253060Ca0C2
+    events:
+    - event: AssetSourceUpdated
+      requiredEntities: []
+    - event: FallbackOracleUpdated
+      requiredEntities: []
+    - event: BaseCurrencySet
+      requiredEntities: []
+  - name: PoolAddressesProviderRegistry
+    abi_file_path: ./abis/PoolAddressesProviderRegistry.json
+    handler: ./src/EventHandlers.js
+    address:
+    - 0xbaA999AC55EAce41CcAE355c77809e68Bb345170
+    events:
+    - event: AddressesProviderRegistered
+      requiredEntities: []
+    - event: AddressesProviderUnregistered
+      requiredEntities: []
+  - name: RewardsController
+    abi_file_path: ./abis/RewardsController.json
+    handler: ./src/EventHandlers.js
+    address:
+    - 0x8164Cc65827dcFe994AB23944CBC90e0aa80bFcb
+    events:
+    - event: AssetConfigUpdated
+      requiredEntities: []
+    - event: Accrued
+      requiredEntities: []
+    - event: RewardsClaimed
+      requiredEntities: []
+    - event: RewardOracleUpdated
+      requiredEntities: []
+    - event: EmissionManagerUpdated
+      requiredEntities: []
+  - name: AaveOracle
+    abi_file_path: ./abis/AaveOracle.json
+    handler: ./src/EventHandlers.js
+    address:
+    - 0x54586bE62E3c3580375aE3723C145253060Ca0C2
+    events:
+    - event: AssetSourceUpdated
+      requiredEntities: []
+    - event: FallbackOracleUpdated
+      requiredEntities: []
+    - event: BaseCurrencySet
+      requiredEntities: []
+  - name: AaveOracle
+    abi_file_path: ./abis/AaveOracle.json
+    handler: ./src/EventHandlers.js
+    address:
+    - 0x54586bE62E3c3580375aE3723C145253060Ca0C2
+    events:
+    - event: AssetSourceUpdated
+      requiredEntities: []
+    - event: FallbackOracleUpdated
+      requiredEntities: []
+    - event: BaseCurrencySet
+      requiredEntities: []
+  - name: RewardsController
+    abi_file_path: ./abis/RewardsController.json
+    handler: ./src/EventHandlers.js
+    address:
+    - 0x8164Cc65827dcFe994AB23944CBC90e0aa80bFcb
+    events:
+    - event: AssetConfigUpdated
+      requiredEntities: []
+    - event: Accrued
+      requiredEntities: []
+    - event: RewardsClaimed
+      requiredEntities: []
+    - event: RewardOracleUpdated
+      requiredEntities: []
+    - event: EmissionManagerUpdated
+      requiredEntities: []
+  - name: RewardsController
+    abi_file_path: ./abis/RewardsController.json
+    handler: ./src/EventHandlers.js
+    address:
+    - 0x8164Cc65827dcFe994AB23944CBC90e0aa80bFcb
+    events:
+    - event: AssetConfigUpdated
+      requiredEntities: []
+    - event: Accrued
+      requiredEntities: []
+    - event: RewardsClaimed
+      requiredEntities: []
+    - event: RewardOracleUpdated
+      requiredEntities: []
+    - event: EmissionManagerUpdated
+      requiredEntities: []
+  - name: RewardsController
+    abi_file_path: ./abis/RewardsController.json
+    handler: ./src/EventHandlers.js
+    address:
+    - 0x8164Cc65827dcFe994AB23944CBC90e0aa80bFcb
+    events:
+    - event: AssetConfigUpdated
+      requiredEntities: []
+    - event: Accrued
+      requiredEntities: []
+    - event: RewardsClaimed
+      requiredEntities: []
+    - event: RewardOracleUpdated
+      requiredEntities: []
+    - event: EmissionManagerUpdated
+      requiredEntities: []
